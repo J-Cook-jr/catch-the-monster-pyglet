@@ -41,10 +41,14 @@ is_drawing = True  # Controls whether to show movement
 
 def game_over():
     global is_drawing
-   
+    
     is_drawing = False
     music.pause()
-    pyglet.app.exit()
+    you_won_song = pyglet.media.load('./resources/win.wav', streaming=False) 
+    you_won_label = pyglet.text.Label(text="YOU WON!!!", x=60, y=200, font_size=48, batch=main_batch)
+    you_won_song.play()
+    # pyglet.app.exit()
+
 
 def update(dt):
 
