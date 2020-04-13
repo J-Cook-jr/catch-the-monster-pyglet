@@ -41,16 +41,17 @@ is_drawing = True  # Controls whether to show movement
 
 def game_over():
     global is_drawing
-
+   
     is_drawing = False
     music.pause()
-
+    pyglet.app.exit()
 
 def update(dt):
 
     global score
 
     if is_drawing:
+        
 
         for obj in game_objects:
             obj.update(dt)
@@ -79,6 +80,9 @@ def update(dt):
 
             score += 10
             score_label.text = f"Caught {score}"
+
+            if score >= 20 :
+                game_over()
 
             gotcha_sound_effect = pyglet.media.load('./resources/win.wav', streaming=False)
             gotcha_sound_effect.play()
